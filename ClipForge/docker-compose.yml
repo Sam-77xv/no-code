@@ -1,0 +1,62 @@
+version: '3.8'
+
+services:
+  # ClipForge Web Application
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - NEXT_PUBLIC_API_URL=http://localhost:3000/api
+    volumes:
+      - ./data:/app/data
+    depends_on:
+      - redis
+    networks:
+      - clipforge-network
+    restart: unless-stopped
+
+  # ClipForge Desktop Application (build service)
+  desktop:
+    build:
+      context: .
+      dockerfile: apps/desktop/Dockerfile
+    volumes:
+      - ./data:/app/data
+    networks:
+      - clipforge-network
+
+  # Redis for BullMQ queue
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - clipforge-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # yt-dlp service (optional - can also be installed on host)
+  ytdlp:
+    image: ghcr.io/yt-dlp/yt-dlp:latest
+    volumes:
+      - ./data/downloads:/downloads
+    networks:
+      - clipforge-network
+    restart: unless-stopped
+
+volumes:
+  redis-data:
+
+networks:
+  clipforge-network:
+    driver: bridge

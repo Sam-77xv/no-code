@@ -1,0 +1,339 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --background: 0 0% 3.9%;
+  --foreground: 0 0% 98%;
+  --card: 0 0% 6%;
+  --card-foreground: 0 0% 98%;
+  --popover: 0 0% 6%;
+  --popover-foreground: 0 0% 98%;
+  --primary: 10 90% 51%;
+  --primary-foreground: 0 0% 98%;
+  --secondary: 0 0% 14.9%;
+  --secondary-foreground: 0 0% 98%;
+  --muted: 0 0% 14.9%;
+  --muted-foreground: 0 0% 63.9%;
+  --accent: 0 0% 14.9%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 0 0% 14.9%;
+  --input: 0 0% 14.9%;
+  --ring: 10 90% 51%;
+  --chart-1: 12 76% 61%;
+  --chart-2: 173 58% 39%;
+  --chart-3: 197 37% 24%;
+  --chart-4: 43 74% 45%;
+  --chart-5: 27 87% 58%;
+  --radius: 0.25rem;
+}
+
+.dark {
+  --background: 0 0% 3.9%;
+  --foreground: 0 0% 98%;
+  --card: 0 0% 6%;
+  --card-foreground: 0 0% 98%;
+  --popover: 0 0% 6%;
+  --popover-foreground: 0 0% 98%;
+  --primary: 10 90% 51%;
+  --primary-foreground: 0 0% 98%;
+  --secondary: 0 0% 14.9%;
+  --secondary-foreground: 0 0% 98%;
+  --muted: 0 0% 14.9%;
+  --muted-foreground: 0 0% 63.9%;
+  --accent: 0 0% 14.9%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 0 0% 14.9%;
+  --input: 0 0% 14.9%;
+  --ring: 10 90% 51%;
+  --chart-1: 12 76% 61%;
+  --chart-2: 173 58% 39%;
+  --chart-3: 197 37% 24%;
+  --chart-4: 43 74% 45%;
+  --chart-5: 27 87% 58%;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+body {
+  color: var(--foreground);
+  background: #0A0A0A;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar for terminal aesthetic */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1A1614;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3a3a3a;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4a4a4a;
+}
+
+/* Typewriter effect for status messages */
+.typewriter {
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typewriter 2s steps(20) infinite;
+}
+
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* Blinking cursor */
+.blinking-cursor::after {
+  content: '▊';
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Terminal-like input */
+.terminal-input {
+  outline: none;
+  border: none;
+  background: transparent;
+  color: #EDEDED;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.terminal-input:focus {
+  outline: none;
+}
+
+/* Status bar styling */
+.status-bar {
+  background: #1A1614;
+  border-top: 1px solid #3a3a3a;
+  padding: 8px 16px;
+  font-size: 12px;
+  color: #7DD3FC;
+}
+
+/* Sidebar styling */
+.sidebar {
+  background: #1A1614;
+  border-right: 1px solid #3a3a3a;
+  width: 250px;
+  min-width: 250px;
+}
+
+/* Main workspace */
+.workspace {
+  background: #0A0A0A;
+  flex: 1;
+  overflow: auto;
+}
+
+/* Platform toggle buttons */
+.platform-toggle {
+  transition: all 0.2s ease;
+}
+
+.platform-toggle.active {
+  background: #D97757;
+  color: white;
+}
+
+.platform-toggle:hover {
+  background: #3a3a3a;
+}
+
+/* ASCII progress bar */
+.ascii-progress {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: #7DD3FC;
+}
+
+/* Video preview container */
+.video-preview {
+  background: #1A1614;
+  border: 1px solid #3a3a3a;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+/* Button styling */
+.btn-primary {
+  background: #D97757;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+  background: #c46b4a;
+}
+
+.btn-secondary {
+  background: #3a3a3a;
+  color: #EDEDED;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background: #4a4a4a;
+}
+
+/* Card styling */
+.card {
+  background: #1A1614;
+  border: 1px solid #3a3a3a;
+  border-radius: 4px;
+  padding: 16px;
+}
+
+/* Form input */
+.form-input {
+  background: #0A0A0A;
+  border: 1px solid #3a3a3a;
+  border-radius: 4px;
+  color: #EDEDED;
+  padding: 8px 12px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  width: 100%;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #D97757;
+}
+
+/* Tooltip */
+.tooltip {
+  position: relative;
+}
+
+.tooltip::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1A1614;
+  color: #EDEDED;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  white-space: nowrap;
+  z-index: 100;
+  border: 1px solid #3a3a3a;
+}
+
+/* Drag and drop zone */
+.drop-zone {
+  background: #1A1614;
+  border: 2px dashed #3a3a3a;
+  border-radius: 4px;
+  padding: 40px;
+  text-align: center;
+  color: #7DD3FC;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.drop-zone:hover {
+  border-color: #D97757;
+  background: #0A0A0A;
+}
+
+.drop-zone.active {
+  border-color: #7DD3FC;
+  background: #0A0A0A;
+}
+
+/* Platform icons */
+.platform-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+}
+
+/* Job status indicators */
+.status-indicator {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.status-pending { background: #4a4a4a; }
+.status-downloading { background: #7DD3FC; animation: pulse 1s infinite; }
+.status-processing { background: #D97757; animation: pulse 1s infinite; }
+.status-uploading { background: #7DD3FC; animation: pulse 1s infinite; }
+.status-completed { background: #28a745; }
+.status-failed { background: #dc3545; }
+.status-cancelled { background: #6c757d; }
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Log messages */
+.log-message {
+  font-size: 11px;
+  color: #7DD3FC;
+  margin-bottom: 4px;
+}
+
+.log-success { color: #28a745; }
+.log-error { color: #dc3545; }
+.log-warning { color: #ffc107; }
+.log-info { color: #7DD3FC; }

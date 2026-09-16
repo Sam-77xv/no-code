@@ -1,0 +1,81 @@
+# Dependencies
+node_modules/
+pnpm-lock.yaml
+
+# Build outputs
+.next/
+out/
+dist/
+build/
+
+# Environment files
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Test coverage
+coverage/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Data directories (keep structure but ignore content)
+data/downloads/*
+data/uploads/*
+data/logs/*
+data/temp/*
+!data/downloads/.gitkeep
+!data/uploads/.gitkeep
+!data/logs/.gitkeep
+!data/temp/.gitkeep
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# ClipForge specific
+clipforge.db
+clipforge.db-shm
+clipforge.db-wal
+
+# Tauri
+src-tauri/target/
+
+# Docker
+.docker/
+
+# Installer builds
+*.dmg
+*.exe
+*.AppImage
+*.deb
+*.rpm
+*.apk
+
+# Cache
+.cache/
+.pnpm-store/

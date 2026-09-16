@@ -1,0 +1,147 @@
+{
+  "build": {
+    "beforeBuildCommand": "pnpm --filter @clipforge/web build",
+    "devPath": "http://localhost:3000",
+    "distDir": "../../web/.next/standalone",
+    "withGlobalTauri": true,
+    "frontendDist": "../../web/out"
+  },
+  "package": {
+    "productName": "ClipForge",
+    "version": "1.0.0",
+    "description": "A unified content pipeline tool for creators - download, process, and publish videos to multiple platforms with zero manual intervention",
+    "authors": ["machbrandido-art"],
+    "license": "MIT",
+    "repository": "https://github.com/machbrandido-art/no-code",
+    "homepage": "https://github.com/machbrandido-art/no-code/tree/main/ClipForge",
+    "categories": ["Utility", "Video", "Social Media", "Productivity"]
+  },
+  "tauri": {
+    "allowlist": {
+      "all": false,
+      "fs": {
+        "all": true,
+        "scope": [
+          {"name": "Downloads", "path": "$APPDATA/../Local/ClipForge/downloads"},
+          {"name": "Uploads", "path": "$APPDATA/../Local/ClipForge/uploads"},
+          {"name": "Logs", "path": "$APPDATA/../Local/ClipForge/logs"},
+          {"name": "Temp", "path": "$APPDATA/../Local/ClipForge/temp"},
+          {"name": "Database", "path": "$APPDATA/../Local/ClipForge/data"},
+          {"name": "AppData", "path": "$APPDATA/ClipForge"},
+          {"name": "Cache", "path": "$CACHE/ClipForge"},
+          {"name": "Config", "path": "$CONFIG/ClipForge"}
+        ]
+      },
+      "http": {
+        "all": true,
+        "scope": [
+          {"name": "API", "domain": "localhost"},
+          {"name": "YouTube API", "domain": "www.googleapis.com"},
+          {"name": "TikTok API", "domain": "open-api.tiktok.com"},
+          {"name": "Instagram API", "domain": "graph.instagram.com"},
+          {"name": "Facebook API", "domain": "graph.facebook.com"},
+          {"name": "Twitter API", "domain": "api.twitter.com"},
+          {"name": "LinkedIn API", "domain": "api.linkedin.com"},
+          {"name": "Threads API", "domain": "www.threads.net"},
+          {"name": "Snapchat API", "domain": "api.snapchat.com"},
+          {"name": "Pinterest API", "domain": "api.pinterest.com"},
+          {"name": "OpenAI API", "domain": "api.openai.com"},
+          {"name": "Anthropic API", "domain": "api.anthropic.com"},
+          {"name": "Google AI API", "domain": "generativelanguage.googleapis.com"}
+        ]
+      },
+      "os": {
+        "all": true
+      },
+      "path": {
+        "all": true
+      },
+      "process": {
+        "all": true,
+        "scope": [
+          {"name": "Node", "cmd": "node"},
+          {"name": "pnpm", "cmd": "pnpm"}
+        ]
+      },
+      "shell": {
+        "all": true,
+        "scope": [
+          {
+            "name": "yt-dlp",
+            "cmd": "yt-dlp",
+            "sidecar": true
+          },
+          {
+            "name": "ffmpeg",
+            "cmd": "ffmpeg",
+            "sidecar": true
+          },
+          {
+            "name": "ffprobe",
+            "cmd": "ffprobe",
+            "sidecar": true
+          }
+        ]
+      },
+      "window": {
+        "all": true
+      }
+    },
+    "bundle": {
+      "active": true,
+      "targets": "all",
+      "identifier": "com.machbrandido.clipforge",
+      "icon": [
+        {"icon": "icons/32x32.png", "targets": ["all"]},
+        {"icon": "icons/Square30x30Logo.scale-100.png", "targets": ["windows"]},
+        {"icon": "icons/Square30x30Logo.scale-125.png", "targets": ["windows"]},
+        {"icon": "icons/Square30x30Logo.scale-150.png", "targets": ["windows"]},
+        {"icon": "icons/Square30x30Logo.scale-200.png", "targets": ["windows"]},
+        {"icon": "icons/Square30x30Logo.scale-400.png", "targets": ["windows"]},
+        {"icon": "icons/Square30x30Logo.scale-50.png", "targets": ["windows"]},
+        {"icon": "icons/icon.icns", "targets": ["macos"]},
+        {"icon": "icons/icon.png", "targets": ["linux"]}
+      ],
+      "longDescription": "ClipForge is a unified content pipeline tool that lets creators fetch, process, and publish videos to multiple platforms with zero manual intervention. Download videos from YouTube, TikTok, Instagram, and more. Process with aspect ratio conversion, smart cropping, compression, and watermark removal. Publish to 9+ platforms simultaneously with AI-generated metadata.",
+      "shortDescription": "Download, process, and publish videos to multiple platforms",
+      "deb": {
+        "depends": ["libgtk-3-0", "libwebkit2gtk-4.1-0", "libappindicator3-1", "librsvg2-2"]
+      },
+      "macOS": {
+        "entitlements": null,
+        "exceptionDomain": null,
+        "frameworks": [],
+        "signing": {
+          "hardenedRuntime": true,
+          "entitlements": null,
+          "entitlementsPath": null,
+          "signingIdentity": null
+        }
+      },
+      "windows": [
+        {
+          "title": "ClipForge",
+          "width": 1400,
+          "height": 900,
+          "minWidth": 1024,
+          "minHeight": 768,
+          "resizable": true,
+          "fullscreen": false,
+          "decorations": true,
+          "visible": true,
+          "transparent": false,
+          "alwaysOnTop": false
+        }
+      ]
+    },
+    "updater": {
+      "active": true,
+      "endpoints": [
+        "https://github.com/machbrandido-art/no-code/releases/latest/download/clipforge_update.json"
+      ],
+      "dialog": true,
+      "pubkey": null
+    },
+    "updaterPubkey": null
+  }
+}
