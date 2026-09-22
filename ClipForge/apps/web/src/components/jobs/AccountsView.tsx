@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Users, Plus, Link2, Unlink2, MoreVertical, RefreshCw, Eye, EyeOff } from 'lucide-react';
+import { Users, Plus, Link2, Unlink2, MoreVertical, RefreshCw, EyeOff } from 'lucide-react';
 import { PlatformIcon } from '../platforms/PlatformIcon';
 import { Platform } from '@/types';
 
