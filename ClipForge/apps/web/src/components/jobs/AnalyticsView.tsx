@@ -91,8 +91,8 @@ export function AnalyticsView() {
           const date = new Date(Date.now() - (29 - i) * 24 * 60 * 60 * 1000);
           return date.toISOString().split('T')[0];
         }),
-        views: Array.from({ length: 30 }, (_, i) => Math.floor(Math.random() * 50000) + 20000),
-        likes: Array.from({ length: 30 }, (_, i) => Math.floor(Math.random() * 2000) + 500),
+        views: Array.from({ length: 30 }, () => Math.floor(Math.random() * 50000) + 20000),
+        likes: Array.from({ length: 30 }, () => Math.floor(Math.random() * 2000) + 500),
         engagement: Array.from({ length: 30 }, () => Math.random() * 0.3),
       };
       setTrendData(mockTrend);
