@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState } from 'react';
 import { Sidebar } from '@/components/layout/Sidebar';
 import { Workspace } from '@/components/layout/Workspace';
 import { StatusBar } from '@/components/layout/StatusBar';
