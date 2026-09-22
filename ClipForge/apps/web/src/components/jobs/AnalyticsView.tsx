@@ -75,11 +75,11 @@ export function AnalyticsView() {
           pinterest: { views: 45600, likes: 2345, comments: 567, shares: 345, engagement: 0.20, uploadCount: 6 },
         },
         recentJobs: [
-          { id: '1', jobId: 'job_001', platform: 'youtube', videoId: 'abc123', views: 45200, likes: 2345, comments: 345, shares: 123, engagementRate: 0.15, timestamp: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000) },
-          { id: '2', jobId: 'job_002', platform: 'tiktok', videoId: 'def456', views: 67800, likes: 4567, comments: 567, shares: 234, engagementRate: 0.22, timestamp: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000) },
-          { id: '3', jobId: 'job_003', platform: 'instagram', videoId: 'ghi789', views: 23400, likes: 1234, comments: 234, shares: 156, engagementRate: 0.18, timestamp: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000) },
-          { id: '4', jobId: 'job_004', platform: 'tiktok', videoId: 'jkl012', views: 56700, likes: 3456, comments: 456, shares: 190, engagementRate: 0.20, timestamp: new Date(Date.now() - 4 * 24 * 60 * 60 * 1000) },
-          { id: '5', jobId: 'job_005', platform: 'youtube', videoId: 'mno345', views: 34500, likes: 1890, comments: 290, shares: 98, engagementRate: 0.16, timestamp: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000) },
+          { id: '1', jobId: 'job_001', platform: 'youtube' as const, videoId: 'abc123', views: 45200, likes: 2345, comments: 345, shares: 123, engagementRate: 0.15, timestamp: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000) },
+          { id: '2', jobId: 'job_002', platform: 'tiktok' as const, videoId: 'def456', views: 67800, likes: 4567, comments: 567, shares: 234, engagementRate: 0.22, timestamp: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000) },
+          { id: '3', jobId: 'job_003', platform: 'instagram' as const, videoId: 'ghi789', views: 23400, likes: 1234, comments: 234, shares: 156, engagementRate: 0.18, timestamp: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000) },
+          { id: '4', jobId: 'job_004', platform: 'tiktok' as const, videoId: 'jkl012', views: 56700, likes: 3456, comments: 456, shares: 190, engagementRate: 0.20, timestamp: new Date(Date.now() - 4 * 24 * 60 * 60 * 1000) },
+          { id: '5', jobId: 'job_005', platform: 'youtube' as const, videoId: 'mno345', views: 34500, likes: 1890, comments: 290, shares: 98, engagementRate: 0.16, timestamp: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000) },
         ],
       };
 
