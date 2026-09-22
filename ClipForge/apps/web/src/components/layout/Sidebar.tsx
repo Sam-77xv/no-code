@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { 
   Plus, 
-  Queue, 
+  ListTodo as Queue, 
   History, 
   Users, 
   Settings as SettingsIcon,
