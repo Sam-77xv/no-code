@@ -326,7 +326,7 @@ export function AnalyticsView() {
                     <span className="text-xs text-muted-foreground/70">Last 10 uploads</span>
                   </div>
                   <div className="space-y-2">
-                    {analyticsData?.recentJobs.map((job, index) => (
+                    {analyticsData?.recentJobs.map((job) => (
                       <div
                         key={job.id}
                         className="flex items-center gap-3 p-2 rounded hover:bg-border/40 transition-colors"
