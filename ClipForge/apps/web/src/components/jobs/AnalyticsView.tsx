@@ -159,11 +159,6 @@ export function AnalyticsView() {
     };
   };
 
-  const calculateChange = (current: number, previous: number): number => {
-    if (previous === 0) return 0;
-    return ((current - previous) / previous) * 100;
-  };
-
   return (
     <div className="p-6 space-y-6 h-full overflow-auto">
       {/* Header */}
