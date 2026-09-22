@@ -9,9 +9,7 @@ import {
   MessageSquare,
   Share2,
   Calendar,
-  RefreshCw,
-  ChevronDown,
-  ChevronUp
+  RefreshCw
 } from 'lucide-react';
 import { Platform, UploadAnalytics, PLATFORMS } from '@/types';
 import { PlatformIcon } from '../platforms/PlatformIcon';
