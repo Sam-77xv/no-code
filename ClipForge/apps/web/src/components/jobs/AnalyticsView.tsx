@@ -4,12 +4,10 @@ import { useState, useEffect, useMemo } from 'react';
 import { 
   BarChart3, 
   TrendingUp, 
-  Users,
   Eye,
   Heart,
   MessageSquare,
   Share2,
-  Filter,
   Calendar,
   RefreshCw,
   ChevronDown,
