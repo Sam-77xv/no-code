@@ -4,7 +4,6 @@ import { useState, useEffect, useMemo } from 'react';
 import { 
   BarChart3, 
   TrendingUp, 
-  TrendingDown,
   Clock,
   Users,
   Eye,
