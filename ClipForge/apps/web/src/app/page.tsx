@@ -9,14 +9,14 @@ import { JobProvider } from '@/store/JobContext';
 import { SettingsProvider } from '@/store/SettingsContext';
 
 export default function Home() {
-  const [activeView, setActiveView] = useState<'new' | 'queue' | 'history' | 'accounts' | 'settings'>('new');
+  const [activeView, setActiveView] = useState<'new' | 'queue' | 'history' | 'accounts' | 'settings' | 'analytics'>('new');
 
   return (
     <div className="flex h-screen w-full overflow-hidden">
       <ToastProvider>
         <SettingsProvider>
           <JobProvider>
-            <Sidebar activeView={activeView} onViewChange={setActiveView} />
+            <Sidebar activeView={activeView} onViewChange={(view) => setActiveView(view as any)} />
             <main className="flex-1 flex flex-col min-w-0">
               <Workspace activeView={activeView} />
               <StatusBar />
