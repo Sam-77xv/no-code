@@ -19,23 +19,25 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
           cache: 'pnpm'
 
       - name: Setup pnpm
-        uses: pnpm/action-setup@v2
+        uses: pnpm/action-setup@v3
         with:
-          version: 8
+          version: 9
 
       - name: Install project dependencies
         run: |
           cd ClipForge
-          pnpm install --frozen-lockfile
+          npm install -g pnpm
+          pnpm install
 
       - name: Build web app
         run: |
           cd ClipForge
           pnpm --filter @clipforge/web build
+        shell: bash
 
       - name: Setup Rust
         uses: actions-rs/toolchain@v1
@@ -57,8 +59,8 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
         with:
-          sdk-versions: 33
-          build-tools: 33.0.0
+          sdk-versions: 34
+          build-tools: 34.0.0
           cmake: 3.22.1
           ndk: 25.2.9519653
 
@@ -69,6 +71,7 @@ jobs:
         run: |
           cd ClipForge/apps/desktop
           pnpm install
+        shell: bash
 
       - name: Build Android APK
         run: |
@@ -77,6 +80,7 @@ jobs:
         env:
           ANDROID_HOME: ${{ env.ANDROID_HOME }}
           ANDROID_NDK_HOME: ${{ env.ANDROID_NDK_HOME }}
+        shell: bash
 
       - name: Rename APK
         run: |
