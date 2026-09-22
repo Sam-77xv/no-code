@@ -1,0 +1,128 @@
+name: Build Android APK
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+    paths:
+      - 'ClipForge/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Install project dependencies
+        run: |
+          cd ClipForge
+          pnpm install --frozen-lockfile
+
+      - name: Build web app
+        run: |
+          cd ClipForge
+          pnpm --filter @clipforge/web build
+
+      - name: Setup Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          target: aarch64-linux-android,armv7-linux-androideabi,x86_64-linux-android,i686-linux-android
+
+      - name: Setup Android NDK
+        uses: nttld/setup-ndk@v1
+        with:
+          ndk-version: 25.2.9519653
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+        with:
+          sdk-versions: 33
+          build-tools: 33.0.0
+          cmake: 3.22.1
+          ndk: 25.2.9519653
+
+      - name: Accept Android licenses
+        run: yes | sdkmanager --licenses > /dev/null
+
+      - name: Install Tauri dependencies
+        run: |
+          cd ClipForge/apps/desktop
+          pnpm install
+
+      - name: Build Android APK
+        run: |
+          cd ClipForge/apps/desktop
+          pnpm tauri android build --release
+        env:
+          ANDROID_HOME: ${{ env.ANDROID_HOME }}
+          ANDROID_NDK_HOME: ${{ env.ANDROID_NDK_HOME }}
+
+      - name: Rename APK
+        run: |
+          cd ClipForge/apps/desktop/src-tauri/target/release
+          mv clipforge-desktop-release.apk ClipForge-v1.0.0.apk
+
+      - name: Upload APK as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ClipForge-Android-APK
+          path: ClipForge/apps/desktop/src-tauri/target/release/ClipForge-*.apk
+          retention-days: 30
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        if: github.ref == 'refs/heads/main'
+        with:
+          tag_name: v1.0.0-android
+          name: ClipForge v1.0.0 - Android APK
+          body: |
+            # ClipForge Android APK Release
+            
+            This is an automated build of ClipForge as an Android APK.
+            
+            ## 📱 How to Install
+            1. Download the APK file below
+            2. Transfer to your Android device
+            3. Open the APK file
+            4. Allow installation from unknown sources
+            5. Follow installation prompts
+            
+            ## 📋 Requirements
+            - Android 5.0+ (API 21+)
+            - 2GB+ free storage
+            - Internet connection for first run
+            
+            ## ⚠️ Notes
+            - This is a development build
+            - May contain bugs
+            - Built automatically via GitHub Actions
+            
+            ## 🔗 Project
+            - [Source Code](https://github.com/machbrandido-art/no-code/tree/main/ClipForge)
+            - [Documentation](https://github.com/machbrandido-art/no-code/blob/main/ClipForge/ANDROID_BUILD_GUIDE.md)
+          files: |
+            ClipForge/apps/desktop/src-tauri/target/release/ClipForge-*.apk
+          fail_on_unmatched_files: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
