@@ -92,20 +92,26 @@
       "targets": "all",
       "identifier": "com.machbrandido.clipforge",
       "icon": [
-        {"icon": "icons/32x32.png", "targets": ["all"]},
-        {"icon": "icons/Square30x30Logo.scale-100.png", "targets": ["windows"]},
-        {"icon": "icons/Square30x30Logo.scale-125.png", "targets": ["windows"]},
-        {"icon": "icons/Square30x30Logo.scale-150.png", "targets": ["windows"]},
-        {"icon": "icons/Square30x30Logo.scale-200.png", "targets": ["windows"]},
-        {"icon": "icons/Square30x30Logo.scale-400.png", "targets": ["windows"]},
-        {"icon": "icons/Square30x30Logo.scale-50.png", "targets": ["windows"]},
+        {"icon": "icons/icon.png", "targets": ["all"]},
         {"icon": "icons/icon.icns", "targets": ["macos"]},
-        {"icon": "icons/icon.png", "targets": ["linux"]}
+        {"icon": "icons/icon.png", "targets": ["linux"]},
+        {"icon": "icons/icon.png", "targets": ["android"]}
       ],
       "longDescription": "ClipForge is a unified content pipeline tool that lets creators fetch, process, and publish videos to multiple platforms with zero manual intervention. Download videos from YouTube, TikTok, Instagram, and more. Process with aspect ratio conversion, smart cropping, compression, and watermark removal. Publish to 9+ platforms simultaneously with AI-generated metadata.",
       "shortDescription": "Download, process, and publish videos to multiple platforms",
       "deb": {
         "depends": ["libgtk-3-0", "libwebkit2gtk-4.1-0", "libappindicator3-1", "librsvg2-2"]
+      },
+      "android": {
+        "packageName": "com.machbrandido.clipforge",
+        "versionCode": 1,
+        "versionName": "1.0.0",
+        "minSdkVersion": 21,
+        "targetSdkVersion": 33,
+        "applicationId": "com.machbrandido.clipforge",
+        "label": "ClipForge",
+        "theme": "@style/Theme.AppCompat.Light.NoActionBar",
+        "orientation": "portrait"
       },
       "macOS": {
         "entitlements": null,
@@ -132,7 +138,16 @@
           "transparent": false,
           "alwaysOnTop": false
         }
-      ]
+      ],
+      "mobile": {
+        "android": {
+          "packageName": "com.machbrandido.clipforge",
+          "versionCode": 1,
+          "versionName": "1.0.0",
+          "minSdkVersion": 21,
+          "targetSdkVersion": 33
+        }
+      }
     },
     "updater": {
       "active": true,

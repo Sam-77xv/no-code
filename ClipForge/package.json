@@ -4,7 +4,7 @@
   "private": true,
   "description": "Unified content pipeline tool for cross-platform video publishing",
   "workspaces": [
-    "apps/web",
+    "apps/*",
     "packages/*"
   ],
   "scripts": {
